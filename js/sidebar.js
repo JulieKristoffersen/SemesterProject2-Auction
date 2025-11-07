@@ -1,4 +1,5 @@
 import { API_URL } from "../js/auth/config.js";
+import { setupHamburgerMenu } from "../js/hamburger.js";
 const apiKey = "c792f01b-a403-4b8b-8dcb-86fd6c4c3c19";
 
 const sidebarContainer = document.getElementById("sidebar-container");
@@ -69,3 +70,4 @@ async function renderSidebar() {
 }
 
 renderSidebar();
+setupHamburgerMenu();

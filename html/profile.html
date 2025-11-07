@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Profile | Auction House</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="module" src="../js/profile.js" defer></script>
+</head>
+<body class="bg-gray-50 text-gray-900 flex min-h-screen">
+  <aside id="sidebar-container" class="w-1/4 bg-slate-800 text-white p-6 flex flex-col justify-between sticky top-0 h-screen">
+  </aside>
+
+  <main class="flex-1 p-8 overflow-y-auto">
+    <div class="mb-6">
+      <a href="index.html" id="goBackBtn" class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+        ← Back to Active Listings
+      </a>
+    </div>
+    <h1 class="text-2xl font-bold mb-6">My Active Listings</h1>
+    <div id="ownListings" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8"></div>
+
+    <section class="bg-white p-6 rounded shadow-md">
+      <h2 class="text-xl font-semibold mb-4">Create New Listing</h2>
+      <form id="createListingForm" class="space-y-4">
+        <input type="text" name="title" placeholder="Title" required class="w-full border px-3 py-2 rounded">
+        <input type="text" name="Start price" placeholder="Start price" required class="w-full border px-3 py-2 rounded">
+        <input type="datetime-local" name="endsAt" placeholder="End Date" required class="w-full border px-3 py-2 rounded">
+        <textarea name="description" placeholder="Description" required class="w-full border px-3 py-2 rounded"></textarea>
+        <input type="text" name="mediaUrl" placeholder="Media URL" class="w-full border px-3 py-2 rounded">
+        <button type="submit" class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition">Create Listing</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

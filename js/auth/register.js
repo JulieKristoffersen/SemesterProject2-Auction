@@ -1,4 +1,4 @@
-const API_URL = "https://v2.api.noroff.dev";
+import { API_URL } from "../auth/config.js";
 
 const registerForm = document.getElementById("registerForm");
 if (registerForm) {

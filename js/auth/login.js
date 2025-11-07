@@ -1,4 +1,4 @@
-const API_URL = "https://v2.api.noroff.dev";
+import { API_URL } from "../auth/config.js";
 
 const loginForm = document.getElementById("loginForm");
 if (loginForm) {
@@ -21,7 +21,7 @@ if (loginForm) {
       });
 
       if (!res.ok) throw new Error("Login failed. Check email/password.");
-      
+
       const result = await res.json();
       localStorage.setItem("user", JSON.stringify(result.data));
       message.textContent = "Login successful! Redirecting...";

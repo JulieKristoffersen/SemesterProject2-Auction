@@ -26,6 +26,9 @@ async function renderSidebar() {
   const profile = await fetchUserProfile();
   if (!profile) return;
 
+  sidebarContainer.classList.remove("w-64");
+  sidebarContainer.classList.add("w-80", "sticky"); 
+
   sidebarContainer.innerHTML = `
     <aside class="bg-slate-800 text-white p-6 flex flex-col justify-between h-screen relative">
       <button id="logoutBtn" class="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded text-xs font-medium hover:bg-red-600 transition">Logout</button>
@@ -33,7 +36,7 @@ async function renderSidebar() {
       <div class="flex flex-col items-center mt-6">
         <img src="${profile.avatar?.url || 'https://via.placeholder.com/100'}" 
              alt="${profile.avatar?.alt || 'User avatar'}" 
-             class="w-24 h-24 rounded-full mb-4 object-cover border-2 border-gray-300">
+             class="w-28 h-28 rounded-full mb-4 object-cover border-2 border-gray-300">
         <h2 class="text-xl font-bold">${profile.name}</h2>
         <p class="text-gray-300 mt-1">Credits: <strong>${profile.credits}</strong></p>
         <a href="profile.html" class="mt-4 w-full bg-blue-500 text-center py-2 rounded-lg font-medium hover:bg-blue-600 transition">My Profile</a>

@@ -1,9 +1,9 @@
 import { API_URL } from "../js/auth/config.js";
 import { setupHamburgerMenu } from "../js/hamburger.js";
-const apiKey = "c792f01b-a403-4b8b-8dcb-86fd6c4c3c19";
 
+const apiKey = "c792f01b-a403-4b8b-8dcb-86fd6c4c3c19";
 const sidebarContainer = document.getElementById("sidebar-container");
-let user = JSON.parse(localStorage.getItem("user"));
+const user = JSON.parse(localStorage.getItem("user"));
 if (!user) window.location.href = "login.html";
 
 async function fetchUserProfile() {
@@ -26,14 +26,11 @@ async function renderSidebar() {
   const profile = await fetchUserProfile();
   if (!profile) return;
 
-  sidebarContainer.classList.remove("w-64");
-  sidebarContainer.classList.add("w-80", "sticky"); 
-
   sidebarContainer.innerHTML = `
-    <aside class="bg-slate-800 text-white p-6 flex flex-col justify-between h-screen relative">
+    <div class="flex flex-col justify-between h-full p-6 relative">
       <button id="logoutBtn" class="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded text-xs font-medium hover:bg-red-600 transition">Logout</button>
 
-      <div class="flex flex-col items-center mt-6">
+      <div class="flex flex-col items-center mt-10">
         <img src="${profile.avatar?.url || 'https://via.placeholder.com/100'}" 
              alt="${profile.avatar?.alt || 'User avatar'}" 
              class="w-28 h-28 rounded-full mb-4 object-cover border-2 border-gray-300">
@@ -63,9 +60,10 @@ async function renderSidebar() {
       <footer class="text-xs text-gray-400 mt-6 text-center">
         © 2025 Auction House. All rights reserved.
       </footer>
-    </aside>
+    </div>
   `;
 
+  // Logout
   document.getElementById("logoutBtn").addEventListener("click", () => {
     localStorage.removeItem("user");
     window.location.href = "login.html";

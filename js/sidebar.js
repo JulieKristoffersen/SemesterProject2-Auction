@@ -63,7 +63,6 @@ async function renderSidebar() {
     </div>
   `;
 
-  // Logout
   document.getElementById("logoutBtn").addEventListener("click", () => {
     localStorage.removeItem("user");
     window.location.href = "login.html";

@@ -7,14 +7,20 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script type="module" src="../js/profile.js" defer></script>
 </head>
-<body class="bg-gray-50 text-gray-900 min-h-screen">
-  <div class="flex min-h-screen relative">
-    <aside id="sidebar-container" class="md:relative fixed top-0 left-0 h-screen transform -translate-x-full md:translate-x-0 transition-transform duration-300 z-40 w-64 bg-slate-800 text-white p-6">
-    </aside>
 
-    <main class="flex-1 p-8 overflow-y-auto w-full md:ml-64">
+<body class="bg-gray-50 text-gray-900 min-h-screen">
+
+  <div class="flex min-h-screen">
+    <aside 
+      id="sidebar-container" 
+      class="w-full md:w-80 bg-slate-800 text-white p-6 
+             md:fixed md:top-0 md:left-0 md:h-screen md:overflow-y-auto">
+    </aside>
+    <main class="flex-1 p-8 w-full md:ml-80 overflow-y-auto">
+
       <div class="mb-6">
-        <a href="index.html" id="goBackBtn" class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+        <a href="index.html" id="goBackBtn" 
+           class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
           ← Back to Active Listings
         </a>
       </div>
@@ -33,7 +39,10 @@
           <button type="submit" class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition">Create Listing</button>
         </form>
       </section>
+
     </main>
+
   </div>
+
 </body>
 </html>

@@ -68,7 +68,8 @@ function renderListings(listings) {
   const query = searchInput.value.toLowerCase();
   if (query) {
     filtered = filtered.filter(l =>
-      l.title.toLowerCase().includes(query) || l.description?.toLowerCase().includes(query)
+      l.title.toLowerCase().includes(query) ||
+      l.description?.toLowerCase().includes(query)
     );
   }
 
@@ -161,6 +162,7 @@ function openModal(listing) {
   modal.querySelector("#close-modal").addEventListener("click", () => modal.remove());
 
   const bidBtn = modal.querySelector("#place-bid");
+
   if (bidBtn) {
     bidBtn.addEventListener("click", async () => {
       const amount = parseFloat(modal.querySelector("#bid-amount").value);
@@ -171,17 +173,27 @@ function openModal(listing) {
         return;
       }
 
+      if (!user?.apiKey) {
+        message.textContent = "Missing API key. Please log in again.";
+        return;
+      }
+
       try {
         const res = await fetch(`https://v2.api.noroff.dev/auction/listings/${listing.id}/bids`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${user.accessToken}`
+            "Authorization": `Bearer ${user.accessToken}`,
+            "X-Noroff-API-Key": user.apiKey   // <-- REQUIRED FIX
           },
           body: JSON.stringify({ amount })
         });
 
-        if (!res.ok) throw new Error("Bid failed");
+        if (!res.ok) {
+          const errData = await res.json();
+          console.error(errData);
+          throw new Error("Bid failed");
+        }
 
         message.textContent = "Bid placed successfully!";
         message.classList.remove("text-red-500");
@@ -190,6 +202,7 @@ function openModal(listing) {
         getListings();
       } catch (err) {
         message.textContent = "Failed to place bid. Try again.";
+        console.error(err);
       }
     });
   }

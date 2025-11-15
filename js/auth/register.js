@@ -12,7 +12,6 @@ if (registerForm) {
       name: formData.get("name"),
       email: formData.get("email"),
       password: formData.get("password"),
-      venueManager: false,  
     };
 
     try {
@@ -22,9 +21,11 @@ if (registerForm) {
         body: JSON.stringify(data),
       });
 
-      if (!res.ok) throw new Error("Registration failed. Check your data.");
+      const registerResult = await res.json();
 
-      const result = await res.json();
+      if (!res.ok) {
+        throw new Error(registerResult.errors?.[0]?.message || "Registration failed.");
+      }
 
       const loginRes = await fetch(`${API_URL}/auth/login`, {
         method: "POST",
@@ -32,15 +33,22 @@ if (registerForm) {
         body: JSON.stringify({ email: data.email, password: data.password }),
       });
 
-      if (!loginRes.ok) throw new Error("Automatic login failed.");
-
       const loggedInUser = await loginRes.json();
 
-      loggedInUser.data.credits = 1000;
+      if (!loginRes.ok) {
+        throw new Error(loggedInUser.errors?.[0]?.message || "Automatic login failed.");
+      }
 
-      localStorage.setItem("user", JSON.stringify(loggedInUser.data));
+      const user = {
+        name: loggedInUser.data.name,
+        email: loggedInUser.data.email,
+        accessToken: loggedInUser.data.accessToken,
+        apiKey: loggedInUser.data.apiKey
+      };
 
-      message.textContent = "Registration successful! You are now logged in.";
+      localStorage.setItem("user", JSON.stringify(user));
+
+      message.textContent = "Registration successful! Redirecting...";
       message.classList.remove("text-red-500");
       message.classList.add("text-green-500");
 

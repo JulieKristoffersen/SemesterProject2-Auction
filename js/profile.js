@@ -54,7 +54,7 @@ async function renderSidebar() {
           <img id="currentAvatar" src="${profile.avatar?.url || predefinedAvatars[0]}" 
                alt="${profile.avatar?.alt || 'avatar'}" 
                class="w-12 h-12 rounded-full object-cover">
-          <button id="logoutBtn" 
+        <button id="logoutBtn" 
                   class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 text-sm font-medium transition absolute top-4 right-4">
             Logout
           </button>
@@ -126,7 +126,12 @@ async function renderSidebar() {
 
   document.getElementById("logoutBtn").addEventListener("click", () => {
     localStorage.removeItem("user");
-    window.location.href = "login.html";
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+  localStorage.removeItem("user");
+  user = null;                     
+  renderSidebar();               
+});
+
   });
 
   document.getElementById("updateAvatarForm").addEventListener("submit", async (e) => {

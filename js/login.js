@@ -1,4 +1,4 @@
-import { API_URL } from "../auth/config.js";
+import { API_URL } from "./auth/config.js";
 
 const loginForm = document.getElementById("loginForm");
 if (loginForm) {

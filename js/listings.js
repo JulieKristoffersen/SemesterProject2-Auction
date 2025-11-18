@@ -133,24 +133,62 @@ function openModal(listing) {
     highestBid = Math.max(...listing.bids.map(b => b.amount));
   }
 
+  const sortedBids = listing.bids
+    ? [...listing.bids].sort((a, b) => new Date(b.created) - new Date(a.created))
+    : [];
+
+const bidHistoryHTML = sortedBids.length
+  ? sortedBids
+      .map((b) => {
+        const isOwnBid = user && b.bidder?.email === user.email;
+
+        return `
+      <div class="p-3 rounded-lg flex justify-between items-center border 
+        ${isOwnBid ? 'bg-blue-100 border-blue-400' : 'bg-gray-100 border-gray-300'}">
+
+        <p class="text-gray-800 font-semibold">
+          ${b.bidder?.name || "Unknown bidder"}
+        </p>
+
+        <p class="font-bold ${isOwnBid ? 'text-blue-700' : 'text-blue-600'}">
+          $${b.amount}
+        </p>
+      </div>
+    `;
+      })
+      .join("")
+  : `<p class="text-gray-500">No bids yet.</p>`;
+
   modal.innerHTML = `
     <div class="bg-white rounded-xl w-full max-w-2xl overflow-y-auto max-h-[90vh] p-6 relative">
       <button id="close-modal" class="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-xl">&times;</button>
-      <img src="${listing.media?.[0]?.url || 'https://via.placeholder.com/600x400'}" alt="${listing.media?.[0]?.alt || ''}" class="w-full h-64 object-cover rounded-lg mb-4">
+
+      <img src="${listing.media?.[0]?.url || 'https://via.placeholder.com/600x400'}" 
+           alt="${listing.media?.[0]?.alt || ''}" 
+           class="w-full h-64 object-cover rounded-lg mb-4">
+
       <h2 class="text-2xl font-bold mb-2">${listing.title}</h2>
       <p class="text-gray-700 mb-2">${listing.description || ''}</p>
+
       <p class="text-gray-500 mb-1">Seller: ${listing.seller?.name || 'Unknown'}</p>
       <p class="text-gray-500 mb-1">Ends: ${new Date(listing.endsAt).toLocaleString()}</p>
+
       <p class="text-gray-700 font-medium mb-2">Highest Bid: $${highestBid}</p>
-      <p class="text-gray-500 mb-3">${listing._count?.bids || 0} ${listing._count?.bids === 1 ? 'bid' : 'bids'}</p>
-      <div class="flex flex-wrap gap-2 mb-4">
-        ${listing.tags?.map(tag => `<span class="bg-gray-200 text-gray-800 px-2 py-1 rounded-full text-xs">${tag}</span>`).join('')}
+      <p class="text-gray-500 mb-3">${listing._count?.bids || 0} bids</p>
+
+      <h3 class="text-lg font-semibold mb-2">Bid History</h3>
+      <div class="flex flex-col gap-2 mb-6">
+        ${bidHistoryHTML}
       </div>
 
       ${user ? `
       <div class="flex gap-2">
-        <input type="number" id="bid-amount" placeholder="Enter your bid" class="flex-1 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-        <button id="place-bid" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">Place Bid</button>
+        <input type="number" id="bid-amount" placeholder="Enter your bid"
+          class="flex-1 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+        <button id="place-bid" 
+          class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">
+          Place Bid
+        </button>
       </div>
       <p id="bid-message" class="mt-2 text-sm text-red-500"></p>
       ` : `<p class="text-red-500 font-medium">Login to place bids.</p>`}
@@ -184,7 +222,7 @@ function openModal(listing) {
           headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${user.accessToken}`,
-            "X-Noroff-API-Key": user.apiKey   // <-- REQUIRED FIX
+            "X-Noroff-API-Key": user.apiKey
           },
           body: JSON.stringify({ amount })
         });

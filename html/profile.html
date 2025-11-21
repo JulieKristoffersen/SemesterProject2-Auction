@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Profile | Auction House</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="module" src="../js/profile.js" defer></script>
+</head>
+
+<body class="bg-gray-50 text-gray-900 min-h-screen">
+
+  <div class="flex min-h-screen">
+    <aside 
+      id="sidebar-container" 
+      class="w-full md:w-80 bg-slate-800 text-white p-6 
+             md:fixed md:top-0 md:left-0 md:h-screen md:overflow-y-auto">
+    </aside>
+
+    <main id="main-content" class="flex-1 p-8 w-full md:ml-80 overflow-y-auto">
+      <div class="mb-6">
+        <a href="index.html" id="goBackBtn" 
+           class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+          ← Back to Active Listings
+        </a>
+      </div>
+
+      <h1 class="text-2xl font-bold mb-6">My Active Listings</h1>
+      <div id="ownListings" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8"></div>
+
+      <section id="create-section" class="bg-white p-6 rounded shadow-md">
+        <h2 class="text-xl font-semibold mb-4">Create New Listing</h2>
+        <form id="createListingForm" class="space-y-4">
+          <input type="text" name="title" placeholder="Title" required class="w-full border px-3 py-2 rounded">
+          <label class="text-sm text-gray-600 block">End date</label>
+          <input type="datetime-local" name="endsAt" placeholder="End Date" required class="w-full border px-3 py-2 rounded">
+          <textarea name="description" placeholder="Description" required class="w-full border px-3 py-2 rounded"></textarea>
+          <input type="text" name="mediaUrl" placeholder="Media URL (optional)" class="w-full border px-3 py-2 rounded">
+          <div class="flex gap-2">
+            <button type="submit" class="flex-1 w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition">Create Listing</button>
+            <button id="resetFormBtn" type="button" class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition">Reset</button>
+          </div>
+          <p id="createMessage" class="text-sm mt-2"></p>
+        </form>
+      </section>
+    </main>
+  </div>
+
+</body>
+</html>

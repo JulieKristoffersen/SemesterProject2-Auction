@@ -35,7 +35,7 @@ export function setupHamburgerMenu(sidebarSelector = "#sidebar-container") {
   });
 
   document.addEventListener("click", (event) => {
-    if (window.innerWidth >= 768) return; // do nothing on desktop
+    if (window.innerWidth >= 768) return; 
     const isClickInsideSidebar = sidebar.contains(event.target);
     const isClickOnButton = hamburgerBtn.contains(event.target);
     if (!isClickInsideSidebar && !isClickOnButton) {

@@ -167,8 +167,8 @@ async function renderSidebar() {
   createSection.style.display = "block";
 
   const predefinedAvatars = [
-    "https://i.pravatar.cc/100?img=1",
-    "https://i.pravatar.cc/100?img=2",
+    "https://i.pravatar.cc/100",
+    "https://i.pravatar.cc/150",
   ];
 
   sidebarContainer.innerHTML = `

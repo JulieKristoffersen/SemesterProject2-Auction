@@ -58,11 +58,11 @@ Right-click index.html in your editor and select Open with Live Server.
 
 # Information
 
-Gantt Chart:
+Gantt Chart: https://semesterproject-2.atlassian.net/jira/core/projects/AUC/timeline?atlOrigin=eyJpIjoiMTcwODljYjVkZmFmNDc4OWIxODdjYjU5ZWViYjYzNjMiLCJwIjoiaiJ9 
 
 Design Prototype: 
 
-Hosted Demo: 
+Hosted Demo: https://auctionhouse-sem2.netlify.app/ 
 
 # User Stories
 

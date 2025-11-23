@@ -36,7 +36,7 @@ Follow these steps to get the project up and running locally:
 
 - Clone the repository:
 
-git clone [git@github.com:your-username/auction-website.git](https://github.com/JulieKristoffersen/SemesterProject2-Auction.git)
+git clone [https://github.com/JulieKristoffersen/SemesterProject2-Auction.git]
 
 
 - Open the project directory:

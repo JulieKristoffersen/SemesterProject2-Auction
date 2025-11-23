@@ -1,5 +1,6 @@
 const API_URL = "https://v2.api.noroff.dev/auction/listings";
 const listingsContainer = document.querySelector("section.grid");
+const mainWrapper = document.querySelector("main") || document.body;
 const searchInput = document.querySelector("input[placeholder='Search listings...']");
 let allListings = [];
 let currentCategory = "all";

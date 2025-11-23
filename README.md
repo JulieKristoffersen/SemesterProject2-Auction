@@ -58,9 +58,9 @@ Right-click index.html in your editor and select Open with Live Server.
 
 # Information
 
-Gantt Chart: https://semesterproject-2.atlassian.net/jira/core/projects/AUC/timeline?atlOrigin=eyJpIjoiMTcwODljYjVkZmFmNDc4OWIxODdjYjU5ZWViYjYzNjMiLCJwIjoiaiJ9 
+Gantt Chart: https://semesterproject-2.atlassian.net/jira/core/projects/AUC/timeline?atlOrigin=eyJpIjoiMTcwODljYjVkZmFmNDc4OWIxODdjYjU5ZWViYjYzNjMiLCJwIjoiaiJ9 and https://trello.com/invite/b/6633c2ce566aca60fd2a52d5/ATTI35291033532a66b16fff2e891d6ae1aaB5328697/auctionhouse-semesterproject 
 
-Design Prototype: 
+Design Prototype: https://www.figma.com/site/C4aj2dSz2AMAYixTzuZ69Q/Untitled?node-id=3-53&t=eDMpXH66XB1oP8eJ-1  
 
 Hosted Demo: https://auctionhouse-sem2.netlify.app/ 
 
